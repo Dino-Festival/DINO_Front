@@ -4,12 +4,15 @@ import loadable from "@loadable/component";
 
 const Home = loadable(() => import("./pages/Home/Home"));
 const Privacy = loadable(() => import("./pages/Privacy/Privacy"));
+const Info = loadable(() => import("./pages/Information/Info"));
+
 function App() {
   return (
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/privacy" element={<Privacy />} />
+        <Route path="/info" element={<Info />} />
       </Routes>
     </Layout>
   );

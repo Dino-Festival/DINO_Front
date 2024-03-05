@@ -1,4 +1,4 @@
-import InfoData from "../../assets/info/Data.png";
+import InfoData from "../../assets/privacy/Data.png";
 import PropTypes from "prop-types";
 
 const PrivacyModal = ({ onClose }) => {
@@ -8,7 +8,7 @@ const PrivacyModal = ({ onClose }) => {
         <button className="flex text-red-500 text-[24px]" onClick={onClose}>
           X
         </button>
-        <img src={InfoData} alt="Info Data" />
+        <img src={InfoData} alt="Privacy Data" />
       </div>
     </div>
   );
