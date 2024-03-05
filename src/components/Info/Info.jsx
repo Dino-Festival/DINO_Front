@@ -106,6 +106,7 @@ const Info = () => {
           <input
             id="phoneNumber"
             type="tel"
+            placeholder="- 없이 입력해주세요. ex) 01012345678"
             value={num}
             ref={phoneRef}
             onChange={handlePhone}

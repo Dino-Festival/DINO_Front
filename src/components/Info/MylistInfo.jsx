@@ -73,7 +73,7 @@ const MyListInfo = ({ setChecked: setParentChecked }) => {
           <input
             id="mylist"
             type="text"
-            placeholder="https://mylist.im/"
+            placeholder="https://mylist.im/를 포함해주세요"
             value={myListLink}
             onChange={handleMyListLinkChange}
             className="pl-2 w-[360px] h-[58px] mb-4 border-[2px] border-[#EDEDED] rounded-2xl"
