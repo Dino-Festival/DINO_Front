@@ -1,9 +1,14 @@
+import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout/layout";
+import loadable from "@loadable/component";
 
+const Home = loadable(() => import("./pages/Home/Home"));
 function App() {
   return (
     <Layout>
-      <h1 className="text-3xl text-red-300">Vite + React</h1>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </Layout>
   );
 }
