@@ -9,6 +9,7 @@ const Info = () => {
   const [num, setNum] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
+  const [deposit, setDeposit] = useState("");
   const phoneRef = useRef();
 
   // 휴대폰 번호 입력 함수
@@ -47,12 +48,13 @@ const Info = () => {
     const isPhoneValid = num.length === 13 && num.startsWith("010-");
     const isAgeValid = age !== "";
     const isGenderValid = gender !== "";
+    const isDepositValid = deposit !== "";
 
-    setChecked(isPhoneValid && isAgeValid && isGenderValid);
+    setChecked(isPhoneValid && isAgeValid && isGenderValid && isDepositValid);
   });
 
   return page === "info" ? (
-    <div className="flex flex-col w-full h-screen items-center justify-between text-[17px]">
+    <div className="flex flex-col w-full h-screen items-center justify-between text-[17px] scrollbar-hide overflow-y-auto">
       <header className="flex flex-col items-center mt-10">
         <img src={Match} className="w-[108px] h-[20px]" alt="match" />
         <img
@@ -112,6 +114,31 @@ const Info = () => {
             onChange={handlePhone}
             className="pl-2 w-[360px] h-[58px] border-[2px] border-[#EDEDED] rounded-2xl"
           />
+          <div className="mt-10">
+            <p className="font-semibold text-[17px] leading-5 mb-2">결제</p>
+            <p className="font-bold text-[19px] leading-6 mb-2">
+              신한 110-523-474827 예금주 : 김동현
+            </p>
+            <p className="font-normal text-[17px] leading-5">
+              매칭 요금 : 990원
+            </p>
+            <p className="font-normal text-[17px] leading-5">
+              *입금 후 입금자명을 기재해주세요.
+            </p>
+          </div>
+          <div className="my-10 ">
+            <label htmlFor="deposit" className="text-lg font-semibold">
+              입금자명
+            </label>
+            <input
+              id="deposit"
+              type="text"
+              placeholder="입금자명을 입력해주세요. ex) 김동현"
+              value={deposit}
+              onChange={(e) => setDeposit(e.target.value)}
+              className="pl-2  mt-2 w-[360px] h-[58px] border-[2px] border-[#EDEDED] rounded-2xl"
+            />
+          </div>
         </div>
       </main>
 
