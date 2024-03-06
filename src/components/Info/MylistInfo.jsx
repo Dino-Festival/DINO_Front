@@ -4,8 +4,15 @@ import MyListImg from "../../assets/main/myList.svg";
 import Two from "../../assets/Info/Two.svg";
 import Warning from "../../assets/Info/Warning.svg";
 import PropTypes from "prop-types";
+import { postUserData } from "../../api/festival";
 
-const MyListInfo = ({ setChecked: setParentChecked }) => {
+const MyListInfo = ({
+  setChecked: setParentChecked,
+  age,
+  sex,
+  phone,
+  name,
+}) => {
   const [checked, setChecked] = useState(false);
   const [myListLink, setMyListLink] = useState("");
 
@@ -36,9 +43,10 @@ const MyListInfo = ({ setChecked: setParentChecked }) => {
   const [selected, setSelected] = useState(null);
 
   const genres = [
-    ["발라드", "힙합", "POP", "인디"],
+    ["장르무관", "힙합", "POP", "인디"],
     ["클래식", "재즈", "뮤지컬", "CCM"],
-    ["K-POP", "아이돌", "J-POP", "장르무관"],
+    ["K-POP", "트로트", "J-POP", "발라드"],
+    ["락", "edm", "댄스", "R&B"],
   ];
 
   useEffect(() => {
@@ -46,11 +54,21 @@ const MyListInfo = ({ setChecked: setParentChecked }) => {
     setParentChecked(false); // 부모 컴포넌트의 setChecked 함수를 호출하여 상태를 변경합니다.
   }, []);
 
-  //   const handlesubmit = () => {
-
-  //     return null
-  //   };
-
+  const handleSubmission = async () => {
+    if (checked) {
+      const data = {
+        age,
+        sex,
+        phone,
+        name,
+        link: myListLink,
+        genre: selected,
+      };
+      await postUserData(data);
+    }
+  };
+  // console.log(myListLink);
+  // console.log(selected);
   return (
     <div className="flex flex-col w-full h-screen items-center justify-between text-[17px]">
       <header className="flex flex-col items-center mt-10">
@@ -124,6 +142,7 @@ const MyListInfo = ({ setChecked: setParentChecked }) => {
               : "bg-[#B6B6B6] text-white cursor-default"
           }`}
           disabled={!checked}
+          onClick={handleSubmission}
         >
           계속하기
         </button>
@@ -134,6 +153,10 @@ const MyListInfo = ({ setChecked: setParentChecked }) => {
 
 MyListInfo.propTypes = {
   setChecked: PropTypes.func.isRequired,
+  age: PropTypes.string.isRequired,
+  sex: PropTypes.string.isRequired,
+  phone: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 export default MyListInfo;

@@ -117,7 +117,7 @@ const Info = () => {
           <div className="mt-10">
             <p className="font-semibold text-[17px] leading-5 mb-2">결제</p>
             <p className="font-bold text-[19px] leading-6 mb-2">
-              신한 110-523-474827 예금주 : 김동현
+              신한 110-523-474827 (김동현)
             </p>
             <p className="font-normal text-[17px] leading-5">
               매칭 요금 : 990원
@@ -157,7 +157,13 @@ const Info = () => {
       </footer>
     </div>
   ) : (
-    <MyListInfo setChecked={setChecked} />
+    <MyListInfo
+      setChecked={setChecked}
+      age={age}
+      sex={gender}
+      phone={num}
+      name={deposit}
+    />
   );
 };
 
