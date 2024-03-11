@@ -1,3 +1,5 @@
+const { default: react } = require("@vitejs/plugin-react-swc");
+
 module.exports = {
   root: true,
   env: { browser: true, es2020: true, node: true },
@@ -15,6 +17,7 @@ module.exports = {
     new webpack.ProvidePlugin({
       process: "process/browser.js",
     }),
+    react().eslint(),
   ],
   rules: {
     "react/jsx-no-target-blank": "off",

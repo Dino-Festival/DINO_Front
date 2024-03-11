@@ -48,7 +48,7 @@ const Privacy = () => {
               <div className="flex items-center">
                 <input
                   type="checkbox"
-                  className="h-4 w-4 justify-center items-center flex rounded-sm mr-1 align-middle"
+                  className="h-4 w-4 justify-center items-center flex rounded-sm mr-1 align-middle cursor-pointer"
                   id="agree"
                   name="agree"
                   checked={checked}

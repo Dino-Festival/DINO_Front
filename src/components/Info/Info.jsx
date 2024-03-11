@@ -42,7 +42,6 @@ const Info = () => {
   };
 
   const [page, setPage] = useState("info");
-  // const [page, setPage] = useState("myListInfo");
 
   useEffect(() => {
     const isPhoneValid = num.length === 13 && num.startsWith("010-");

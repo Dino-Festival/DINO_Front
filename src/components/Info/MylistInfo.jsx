@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Match from "../../assets/main/match.svg";
 import MyListImg from "../../assets/main/myList.svg";
 import Two from "../../assets/Info/Two.svg";
 import Warning from "../../assets/Info/Warning.svg";
 import PropTypes from "prop-types";
 import { postUserData } from "../../api/festival";
+import { useNavigate } from "react-router-dom";
 
 const MyListInfo = ({
   setChecked: setParentChecked,
@@ -15,6 +16,8 @@ const MyListInfo = ({
 }) => {
   const [checked, setChecked] = useState(false);
   const [myListLink, setMyListLink] = useState("");
+
+  const navigate = useNavigate();
 
   const handleMoveMyList = () => {
     window.open("https://mylist.im/", "_blank");
@@ -54,7 +57,7 @@ const MyListInfo = ({
     setParentChecked(false); // 부모 컴포넌트의 setChecked 함수를 호출하여 상태를 변경합니다.
   }, []);
 
-  const handleSubmission = async () => {
+  const handleSubmit = async () => {
     if (checked) {
       const data = {
         age,
@@ -66,9 +69,15 @@ const MyListInfo = ({
       };
       await postUserData(data);
     }
+    navigate(`/result`);
   };
-  // console.log(myListLink);
-  // console.log(selected);
+
+  const emailInput = useCallback((inputElement) => {
+    if (inputElement) {
+      inputElement.focus();
+    }
+  }, []);
+
   return (
     <div className="flex flex-col w-full h-screen items-center justify-between text-[17px]">
       <header className="flex flex-col items-center mt-10">
@@ -89,6 +98,7 @@ const MyListInfo = ({
             My List 링크 첨부
           </label>
           <input
+            ref={emailInput}
             id="mylist"
             type="text"
             placeholder="https://mylist.im/를 포함해주세요"
@@ -117,7 +127,7 @@ const MyListInfo = ({
               {genres.map((row, i) =>
                 row.map((genre, j) => (
                   <button
-                    key={`${i}-${j}`}
+                    key={`${i}-${j} `}
                     className={`w-[80px] h-[30px] text-[12px] font-bold border-2 rounded-xl ${
                       selected === genre
                         ? "bg-black text-white"
@@ -142,7 +152,7 @@ const MyListInfo = ({
               : "bg-[#B6B6B6] text-white cursor-default"
           }`}
           disabled={!checked}
-          onClick={handleSubmission}
+          onClick={handleSubmit}
         >
           계속하기
         </button>
