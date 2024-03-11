@@ -1,9 +1,21 @@
+import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout/layout";
+import loadable from "@loadable/component";
+
+const Home = loadable(() => import("./pages/Home/Home"));
+const Privacy = loadable(() => import("./pages/Privacy/Privacy"));
+const Info = loadable(() => import("./pages/Information/Info"));
+const Result = loadable(() => import("./pages/Result/Result"));
 
 function App() {
   return (
     <Layout>
-      <h1 className="text-3xl text-red-300">Vite + React</h1>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/info" element={<Info />} />
+        <Route path="/result" element={<Result />} />
+      </Routes>
     </Layout>
   );
 }
