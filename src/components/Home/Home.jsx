@@ -4,9 +4,9 @@ import MyListImg from "../../assets/main/myList.svg";
 
 const Home = () => {
   const navigate = useNavigate();
-  // const handleStart = () => {
-  //   navigate("/privacy");
-  // };
+  const handleStart = () => {
+    navigate("/privacy");
+  };
   return (
     <main className="flex flex-col w-full h-full items-center justify-center gap-y-8">
       <div>
