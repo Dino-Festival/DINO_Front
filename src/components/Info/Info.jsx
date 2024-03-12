@@ -53,7 +53,7 @@ const Info = () => {
   });
 
   return page === "info" ? (
-    <div className="flex flex-col w-full h-screen items-center justify-between text-[17px] scrollbar-hide overflow-y-auto">
+    <div className="flex flex-col w-full h-screen items-center justify-between text-[17px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[18px] scrollbar-hide overflow-y-auto">
       <header className="flex flex-col items-center mt-10">
         <img src={Match} className="w-[108px] h-[20px]" alt="match" />
         <img
@@ -65,7 +65,7 @@ const Info = () => {
         <p className="mt-10 font-bold ">정보를 입력해주세요.</p>
       </header>
       <main>
-        <div className="flex flex-col mx-10">
+        <div className="flex flex-col mx-4 sm:mx-6 md:mx-8 lg:mx-10 xl:mx-12">
           <label htmlFor="age" className="mb-2 text-lg font-semibold">
             나이
           </label>
