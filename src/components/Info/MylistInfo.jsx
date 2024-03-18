@@ -7,15 +7,10 @@ import PropTypes from "prop-types";
 import { postUserData } from "../../api/festival";
 import { useNavigate } from "react-router-dom";
 
-const MyListInfo = ({
-  setChecked: setParentChecked,
-  age,
-  sex,
-  phone,
-  name,
-}) => {
+const MyListInfo = ({ setChecked: setParentChecked, age, sex, phone }) => {
   const [checked, setChecked] = useState(false);
   const [myListLink, setMyListLink] = useState("");
+  const [deposit, setDeposit] = useState(""); // Added to hold the depositor's name
 
   const navigate = useNavigate();
 
@@ -23,38 +18,28 @@ const MyListInfo = ({
     window.open("https://mylist.im/", "_blank");
   };
 
+  // This function now checks both the link and depositor's name
+  const updateCheckState = () => {
+    const isValidLink = myListLink.startsWith("https://mylist.im/user");
+    const isNameEntered = deposit.trim() !== ""; // Ensure non-empty, non-blank name
+    const isValid = isValidLink && isNameEntered;
+    setChecked(isValid);
+    setParentChecked(isValid);
+  };
+
   const handleMyListLinkChange = (e) => {
-    const link = e.target.value;
-    setMyListLink(link);
-    // 링크가 "https://mylist.im/"으로 시작하고 장르가 선택되었다면 체크 상태를 변경합니다.
-    setChecked(link.startsWith("https://mylist.im/user") && selected !== null);
-    setParentChecked(
-      link.startsWith("https://mylist.im/user") && selected !== null
-    );
+    setMyListLink(e.target.value);
+    updateCheckState();
   };
 
-  const handleGenreSelect = (genre) => {
-    setSelected(genre);
-    setChecked(
-      myListLink.startsWith("https://mylist.im/user") && genre !== null
-    );
-    setParentChecked(
-      myListLink.startsWith("https://mylist.im/user") && genre !== null
-    );
+  const handleDepositChange = (e) => {
+    setDeposit(e.target.value);
+    updateCheckState();
   };
-
-  const [selected, setSelected] = useState(null);
-
-  const genres = [
-    ["장르무관", "힙합", "POP", "인디"],
-    ["클래식", "재즈", "뮤지컬", "CCM"],
-    ["K-POP", "트로트", "J-POP", "발라드"],
-    ["락", "edm", "댄스", "R&B"],
-  ];
 
   useEffect(() => {
     setChecked(false);
-    setParentChecked(false); // 부모 컴포넌트의 setChecked 함수를 호출하여 상태를 변경합니다.
+    setParentChecked(false);
   }, []);
 
   const handleSubmit = async () => {
@@ -63,13 +48,12 @@ const MyListInfo = ({
         age,
         sex,
         phone,
-        name,
+        name: deposit, // Assuming 'name' is intended to be the depositor's name
         link: myListLink,
-        genre: selected,
       };
       await postUserData(data);
+      navigate(`/result`);
     }
-    navigate(`/result`);
   };
 
   const emailInput = useCallback((inputElement) => {
@@ -122,24 +106,29 @@ const MyListInfo = ({
             </button>
           </div>
           <div className="mt-10">
-            <p className="font-bold text-[18px]">선호 장르 (택 1)</p>
-            <div className="grid grid-cols-4 gap-4 mt-1 ">
-              {genres.map((row, i) =>
-                row.map((genre, j) => (
-                  <button
-                    key={`${i}-${j} `}
-                    className={`w-[80px] h-[30px] text-[12px] font-bold border-2 rounded-xl ${
-                      selected === genre
-                        ? "bg-black text-white"
-                        : "border-gray-300"
-                    }`}
-                    onClick={() => handleGenreSelect(genre)}
-                  >
-                    #{genre}
-                  </button>
-                ))
-              )}
-            </div>
+            <p className="font-semibold text-[17px] leading-5 mb-2">결제</p>
+            <p className="font-bold text-[19px] leading-6 mb-2">
+              신한 110-523-474827 (김동현)
+            </p>
+            <p className="font-normal text-[17px] leading-5">
+              매칭 요금 : 990원
+            </p>
+            <p className="font-normal text-[17px] leading-5">
+              *입금 후 입금자명을 기재해주세요.
+            </p>
+          </div>
+          <div className="my-10 ">
+            <label htmlFor="deposit" className="text-lg font-semibold">
+              입금자명
+            </label>
+            <input
+              id="deposit"
+              type="text"
+              placeholder="입금자명을 입력해주세요. ex) 김동현"
+              value={deposit}
+              onChange={handleDepositChange}
+              className="pl-2 mt-2 w-[360px] h-[58px] border-[2px] border-[#EDEDED] rounded-2xl"
+            />
           </div>
         </div>
       </main>
@@ -166,7 +155,7 @@ MyListInfo.propTypes = {
   age: PropTypes.string.isRequired,
   sex: PropTypes.string.isRequired,
   phone: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  // name: PropTypes.string.isRequired,
 };
 
 export default MyListInfo;
