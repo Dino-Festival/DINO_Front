@@ -7,7 +7,7 @@ import MyListInfo from "./MylistInfo";
 const Info = () => {
   const [checked, setChecked] = useState(false);
   const [num, setNum] = useState("");
-  const [age, setAge] = useState("");
+
   const [gender, setGender] = useState("");
   const phoneRef = useRef();
 
@@ -44,11 +44,11 @@ const Info = () => {
 
   useEffect(() => {
     const isPhoneValid = num.length === 13 && num.startsWith("010-");
-    const isAgeValid = age !== "";
+
     const isGenderValid = gender !== "";
 
-    setChecked(isPhoneValid && isAgeValid && isGenderValid);
-  }, [num, age, gender]);
+    setChecked(isPhoneValid && isGenderValid);
+  }, [num, gender]);
 
   return page === "info" ? (
     <div className="flex flex-col w-full h-screen items-center justify-between text-[17px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[18px] scrollbar-hide overflow-y-auto">
@@ -64,17 +64,6 @@ const Info = () => {
       </header>
       <main>
         <div className="flex flex-col mx-4 sm:mx-6 md:mx-8 lg:mx-10 xl:mx-12">
-          <label htmlFor="age" className="mb-2 text-lg font-semibold">
-            나이
-          </label>
-          <input
-            id="age"
-            type="number"
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
-            className="pl-2 w-[360px] h-[58px] mb-4 border-[2px] border-[#EDEDED] rounded-2xl"
-          />
-
           <fieldset className="mb-4">
             <legend className="mb-2 text-lg font-semibold">성별</legend>
             <div className="flex flex-col">
@@ -129,7 +118,7 @@ const Info = () => {
       </footer>
     </div>
   ) : (
-    <MyListInfo setChecked={setChecked} age={age} sex={gender} phone={num} />
+    <MyListInfo setChecked={setChecked} sex={gender} phone={num} />
   );
 };
 

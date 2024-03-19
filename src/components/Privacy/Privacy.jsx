@@ -71,7 +71,7 @@ const Privacy = () => {
             <div>
               <p className="text-[#EA4335] text-[10px] font-semibold">
                 매칭 서비스를 위해 수집한 개인정보(나이, 번호)등은 서비스가
-                종료되는 즉시 파됩니다.(2024.3월 0일)
+                종료되는 즉시 파됩니다.(2024년 3월 28일)
               </p>
             </div>
           </div>

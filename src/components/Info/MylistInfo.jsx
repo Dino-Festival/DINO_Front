@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import { postUserData } from "../../api/festival";
 import { useNavigate } from "react-router-dom";
 
-const MyListInfo = ({ setChecked: setParentChecked, age, sex, phone }) => {
+const MyListInfo = ({ setChecked: setParentChecked, sex, phone }) => {
   const [checked, setChecked] = useState(false);
   const [myListLink, setMyListLink] = useState("");
   const [deposit, setDeposit] = useState(""); // Added to hold the depositor's name
@@ -45,7 +45,6 @@ const MyListInfo = ({ setChecked: setParentChecked, age, sex, phone }) => {
   const handleSubmit = async () => {
     if (checked) {
       const data = {
-        age,
         sex,
         phone,
         name: deposit, // Assuming 'name' is intended to be the depositor's name
@@ -152,7 +151,7 @@ const MyListInfo = ({ setChecked: setParentChecked, age, sex, phone }) => {
 
 MyListInfo.propTypes = {
   setChecked: PropTypes.func.isRequired,
-  age: PropTypes.string.isRequired,
+
   sex: PropTypes.string.isRequired,
   phone: PropTypes.string.isRequired,
   // name: PropTypes.string.isRequired,
