@@ -72,8 +72,7 @@ const MyListInfo = ({ setChecked: setParentChecked, sex, phone }) => {
         />
         <img src={Two} alt="img" className="w-[98px] h-[33px] mt-10" />
 
-        <p className="mt-10 font-bold">본인의 MyList 주소와</p>
-        <p className="font-bold">좋아하는 장르를 입력해주세요</p>
+        <p className="mt-10 font-bold">본인의 MyList 주소를 입력해주세요</p>
       </header>
       <main>
         <div className="flex flex-col mx-10">

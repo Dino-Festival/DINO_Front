@@ -52,7 +52,7 @@ const Info = () => {
 
   return page === "info" ? (
     <div className="flex flex-col w-full h-screen items-center justify-between text-[17px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[18px] scrollbar-hide overflow-y-auto">
-      <header className="flex flex-col items-center mt-10">
+      <header className="flex flex-col items-center my-10">
         <img src={Match} className="w-[108px] h-[20px]" alt="match" />
         <img
           src={MyListImg}
@@ -60,46 +60,56 @@ const Info = () => {
           alt="mylistImg"
         />
         <img src={One} alt="one" className="w-[98px] h-[33px] mt-10" />
-        <p className="mt-10 font-bold ">정보를 입력해주세요.</p>
       </header>
-      <main>
-        <div className="flex flex-col mx-4 sm:mx-6 md:mx-8 lg:mx-10 xl:mx-12">
-          <fieldset className="mb-4">
-            <legend className="mb-2 text-lg font-semibold">성별</legend>
-            <div className="flex flex-col">
-              <label className="flex items-center space-x-2">
-                <input
-                  type="radio"
-                  name="gender"
-                  value="male"
-                  onChange={(e) => setGender(e.target.value)}
-                />
-                <span>남성</span>
-              </label>
-              <label className="flex items-center space-x-2">
-                <input
-                  type="radio"
-                  name="gender"
-                  value="female"
-                  onChange={(e) => setGender(e.target.value)}
-                />
-                <span>여성</span>
-              </label>
-            </div>
-          </fieldset>
 
-          <label htmlFor="phoneNumber" className="mb-2 text-lg font-semibold">
-            핸드폰 번호
-          </label>
-          <input
-            id="phoneNumber"
-            type="tel"
-            placeholder="- 없이 입력해주세요. ex) 01012345678"
-            value={num}
-            ref={phoneRef}
-            onChange={handlePhone}
-            className="pl-2 w-[360px] h-[58px] border-[2px] border-[#EDEDED] rounded-2xl"
-          />
+      <main>
+        <div className="flex flex-col mx-4 ">
+          <div className="text-[20px] font-bold leading-6 text-center mb-16">
+            <p className="mb-10">정보를 입력해주세요</p>
+            <p className="mb-6">수집한 개인정보는</p>
+            <p className="mb-6 ">28일 축제가 끝나면 바로 폐기됩니다!</p>
+          </div>
+          <div className="mb-12">
+            <fieldset className="mb-8">
+              <legend className="mb-4 text-lg font-semibold">
+                성별(본인의 성별)
+              </legend>
+              <div className="flex flex-col mb-6">
+                <label className="flex items-center space-x-2 mb-4">
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="male"
+                    onChange={(e) => setGender(e.target.value)}
+                  />
+                  <span>남성</span>
+                </label>
+                <label className="flex items-center space-x-2">
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="female"
+                    onChange={(e) => setGender(e.target.value)}
+                  />
+                  <span>여성</span>
+                </label>
+              </div>
+            </fieldset>
+          </div>
+          <div className="mb-12">
+            <label htmlFor="phoneNumber" className="mb-4 text-lg font-semibold">
+              핸드폰 번호
+            </label>
+            <input
+              id="phoneNumber"
+              type="tel"
+              placeholder="- 없이 입력해주세요. ex) 01012345678"
+              value={num}
+              ref={phoneRef}
+              onChange={handlePhone}
+              className="pl-2 w-full h-[58px] border-[2px] border-[#EDEDED] rounded-2xl"
+            />
+          </div>
         </div>
       </main>
 
