@@ -20,9 +20,9 @@ const MyListInfo = ({ setChecked: setParentChecked, sex, phone }) => {
 
   // This function now checks both the link and depositor's name
   const updateCheckState = () => {
-    const isValidLink = myListLink.length >= 3;
+    const isUsernameValid = myListLink.length >= 2;
     const isNameEntered = deposit.trim() !== ""; // Ensure non-empty, non-blank name
-    const isValid = isValidLink && isNameEntered;
+    const isValid = isUsernameValid && isNameEntered;
     setChecked(isValid);
     setParentChecked(isValid);
   };
