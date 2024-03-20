@@ -72,25 +72,27 @@ const MyListInfo = ({ setChecked: setParentChecked, sex, phone }) => {
         />
         <img src={Two} alt="img" className="w-[98px] h-[33px] mt-10" />
 
-        <p className="mt-10 font-bold">본인의 MyList 주소를 입력해주세요</p>
+        <p className="mt-10 font-bold">본인의 MyList 유저네임을 입력해주세요</p>
       </header>
       <main>
         <div className="flex flex-col mx-10">
           <label htmlFor="mylist" className="mb-2 text-lg font-semibold">
-            My List 링크 첨부
+            유저네임 입력
           </label>
           <input
             ref={emailInput}
             id="mylist"
             type="text"
-            placeholder="https://mylist.im/를 포함해주세요"
+            placeholder="ex) mylist_official"
             value={myListLink}
             onChange={handleMyListLinkChange}
             className="pl-2 w-[360px] h-[58px] mb-4 border-[2px] border-[#EDEDED] rounded-2xl"
           />
           <div className="flex flex-row items-center">
             <img src={Warning} alt="img" className="w-[13px] h-[13px] mr-1" />
-            <p className="text-[#A5A5A5] text-[11px]">MyList 주소가 없다면?</p>
+            <p className="text-[#A5A5A5] text-[11px]">
+              MyList 가입이 안되어있다면?
+            </p>
           </div>
           <p className="text-[#A5A5A5] text-[11px]">
             My List에서 당신의 플레이리스트를 만들어보세요!
@@ -100,7 +102,7 @@ const MyListInfo = ({ setChecked: setParentChecked, sex, phone }) => {
               onClick={handleMoveMyList}
               className="bg-black text-white rounded-3xl w-[226px] h-[47px] text-[16px] text-center"
             >
-              My List로 이동하기
+              My List 시작하기
             </button>
           </div>
           <div className="mt-10">
