@@ -6,6 +6,7 @@ import Warning from "../../assets/Info/Warning.svg";
 import PropTypes from "prop-types";
 import { postUserData } from "../../api/festival";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const MyListInfo = ({ setChecked: setParentChecked, sex, phone }) => {
   const [checked, setChecked] = useState(false);
@@ -20,7 +21,7 @@ const MyListInfo = ({ setChecked: setParentChecked, sex, phone }) => {
 
   // This function now checks both the link and depositor's name
   const updateCheckState = () => {
-    const isUsernameValid = myListLink.length >= 2;
+    const isUsernameValid = myListLink.length >= 3;
     const isNameEntered = deposit.trim() !== ""; // Ensure non-empty, non-blank name
     const isValid = isUsernameValid && isNameEntered;
     setChecked(isValid);
@@ -44,14 +45,32 @@ const MyListInfo = ({ setChecked: setParentChecked, sex, phone }) => {
 
   const handleSubmit = async () => {
     if (checked) {
+      const isUsernameValid = myListLink.length >= 3; // 유저네임 유효성 다시 확인
+      if (!isUsernameValid) {
+        toast.error("유저네임은 3글자 이상이어야 합니다.");
+        return; // 유저네임이 유효하지 않으면 여기서 함수 종료
+      }
+
       const data = {
         sex,
         phone,
-        name: deposit, // Assuming 'name' is intended to be the depositor's name
+        name: deposit,
         link: myListLink,
       };
-      await postUserData(data);
-      navigate(`/result`);
+
+      try {
+        await postUserData(data);
+        localStorage.setItem("userSubmit", "true");
+        navigate(`/result`);
+      } catch (e) {
+        // 서버로부터 받은 에러 메시지를 표시
+        toast.error(
+          `${e.response?.data?.message || "제출 중 오류가 발생했습니다."}`
+        );
+      }
+    } else {
+      // 체크되지 않았을 경우, 유효하지 않은 입력에 대한 토스트 메시지를 표시
+      toast.error("모든 필드를 올바르게 입력해주세요.");
     }
   };
 

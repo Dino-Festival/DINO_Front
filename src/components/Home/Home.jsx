@@ -1,11 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import Match from "../../assets/main/match.svg";
 import MyListImg from "../../assets/main/myList.svg";
+import { toast } from "react-toastify";
 
 const Home = () => {
   const navigate = useNavigate();
   const handleStart = () => {
-    navigate("/privacy");
+    const userSubmit = localStorage.getItem("userSubmit");
+    if (userSubmit === "true") {
+      toast.error("이미 제출하셨습니다.");
+    } else {
+      navigate("/privacy");
+    }
   };
   return (
     <main className="flex flex-col w-full h-full items-center justify-center gap-y-8">

@@ -3,6 +3,7 @@ import Match from "../../assets/main/match.svg";
 import MyListImg from "../../assets/main/myList.svg";
 import One from "../../assets/Info/One.svg";
 import MyListInfo from "./MylistInfo";
+import { toast } from "react-toastify";
 
 const Info = () => {
   const [checked, setChecked] = useState(false);
@@ -37,17 +38,25 @@ const Info = () => {
 
     phoneRef.current.value = result;
 
-    setNum(e.target.value);
+    setNum(result);
   };
 
   const [page, setPage] = useState("info");
 
   useEffect(() => {
-    const isPhoneValid = num.length === 13 && num.startsWith("010-");
+    const isPhoneComplete = num.length === 13; // 번호가 완전히 입력되었는지 확인
+    const startsWith010 = num.startsWith("010-"); // 번호가 010으로 시작하는지 확인
+
+    if (isPhoneComplete && !startsWith010) {
+      toast.error("핸드폰 번호는 010으로 시작해야 합니다.");
+    }
 
     const isGenderValid = gender !== "";
+    if (gender.length > 0 && !isGenderValid) {
+      toast.error("성별을 선택해주세요.");
+    }
 
-    setChecked(isPhoneValid && isGenderValid);
+    setChecked(isPhoneComplete && startsWith010 && isGenderValid);
   }, [num, gender]);
 
   return page === "info" ? (
@@ -97,7 +106,7 @@ const Info = () => {
             </fieldset>
           </div>
           <div className="mb-12">
-            <label htmlFor="phoneNumber" className="mb-4 text-lg font-semibold">
+            <label htmlFor="phoneNumber" className="mb-6 text-lg font-semibold">
               핸드폰 번호
             </label>
             <input
@@ -107,7 +116,7 @@ const Info = () => {
               value={num}
               ref={phoneRef}
               onChange={handlePhone}
-              className="pl-2 w-full h-[58px] border-[2px] border-[#EDEDED] rounded-2xl"
+              className="pl-2 mt-2 w-full h-[58px] border-[2px] border-[#EDEDED] rounded-2xl"
             />
           </div>
         </div>
