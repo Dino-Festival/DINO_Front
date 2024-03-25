@@ -111,7 +111,7 @@ const MyListInfo = ({ setChecked: setParentChecked, sex, phone }) => {
               신한 110-523-474827 (김동현)
             </p>
             <p className="font-normal text-[17px] leading-5">
-              매칭 요금 : 990원
+              매칭 요금 : 500원
             </p>
             <p className="font-normal text-[17px] leading-5">
               *입금 후 입금자명을 기재해주세요.
