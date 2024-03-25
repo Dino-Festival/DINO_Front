@@ -20,7 +20,7 @@ function App() {
         <Route path="/result" element={<Result />} />
       </Routes>
       <ToastContainer
-        position="bottom-center"
+        position="top-center"
         autoClose={1000}
         pauseOnFocusLoss
         limit={1}
