@@ -88,7 +88,7 @@ const MyListInfo = ({ setChecked: setParentChecked, sex, phone }) => {
 
   return (
     <div className="flex flex-col w-full h-screen items-center justify-between text-[17px]">
-      <header className="flex flex-col items-center mt-10">
+      <header className="flex flex-col items-center mt-10 mb-4">
         <img src={Match} className="w-[108px] h-[20px]" alt="match" />
         <img
           src={MyListImg}
@@ -96,8 +96,9 @@ const MyListInfo = ({ setChecked: setParentChecked, sex, phone }) => {
           alt="mylistImg"
         />
         <img src={Two} alt="img" className="w-[98px] h-[33px] mt-10" />
-
+      <div className="text-center">
         <p className="mt-10 font-bold">본인의 MyList 유저네임을 입력해주세요</p>
+        <p className="font-bold text-[12px]">ex."https://mylist.im/user/wonjongchul" 일시 "wonjongchul"입력</p></div>
       </header>
       <main>
         <div className="flex flex-col mx-10">
@@ -131,17 +132,22 @@ const MyListInfo = ({ setChecked: setParentChecked, sex, phone }) => {
             </button>
           </div>
           <div className="mt-10">
-            <p className="font-semibold text-[17px] leading-5 mb-2">결제</p>
-            <p className="font-bold text-[19px] leading-6 mb-2">
-              신한 110-523-474827 (김동현)
-            </p>
-            <p className="font-normal text-[17px] leading-5">
-              매칭 요금 : 500원
-            </p>
-            <p className="font-normal text-[17px] leading-5">
-              *입금 후 입금자명을 기재해주세요.
-            </p>
-          </div>
+  <p className="font-semibold text-[17px] leading-5 mb-2">Mylist 매칭/500원 여기로 보내주세요 </p>
+  <p className="font-bold text-[19px] leading-6 mb-2">
+    1. 신한 110-523-474827 (김동현) OR
+  </p>
+  <p className="font-bold text-[19px] leading-6 mb-2">
+    2. 카카오페이 (김동현)
+  </p>
+  <a href="https://qr.kakaopay.com/FGEvnp10vfa09789" className="font-bold text-[14px] leading-6 mb-2">
+  (https://qr.kakaopay.com/FGEvnp10vfa09789 )
+  </a>
+  <p className="font-normal text-[14px] leading-5 my-2"><span className="text-green-700">✔</span> 링크를 눌러 간편하고 안전하게 보내실 수 있습니다.</p>
+  <p className="font-normal text-[17px] leading-5">
+    *입금 후 입금자명을 기재해주세요.
+  </p>
+</div>
+
           <div className="my-10 ">
             <label htmlFor="deposit" className="text-lg font-semibold">
               입금자명
