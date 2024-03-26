@@ -55,7 +55,7 @@ const MyListInfo = ({ setChecked: setParentChecked, sex, phone }) => {
         sex,
         phone,
         name: deposit,
-        link: myListLink,
+        username: myListLink,
       };
 
       try {
