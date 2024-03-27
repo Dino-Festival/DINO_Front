@@ -7,10 +7,11 @@ import { toast } from "react-toastify";
 
 const Info = () => {
   const [checked, setChecked] = useState(false);
-  const [num, setNum] = useState("");
-
-  const [gender, setGender] = useState("");
+  const [num, setNum] = useState(localStorage.getItem("phone") || "");
+  const [gender, setGender] = useState(localStorage.getItem("gender") || "");
   const phoneRef = useRef();
+
+  const [page, setPage] = useState(localStorage.getItem("page") || "info");
 
   // 휴대폰 번호 입력 함수
   const handlePhone = (e) => {
@@ -41,8 +42,6 @@ const Info = () => {
     setNum(result);
   };
 
-  const [page, setPage] = useState("info");
-
   useEffect(() => {
     const isPhoneComplete = num.length === 13; // 번호가 완전히 입력되었는지 확인
     const startsWith010 = num.startsWith("010-"); // 번호가 010으로 시작하는지 확인
@@ -59,6 +58,19 @@ const Info = () => {
     setChecked(isPhoneComplete && startsWith010 && isGenderValid);
   }, [num, gender]);
 
+  const handleImageClick = (targetPage) => {
+    setPage(targetPage);
+  };
+
+  useEffect(() => {
+    // 페이지, 성별, 번호 상태를 로컬 스토리지에 저장
+    localStorage.setItem("page", page);
+    localStorage.setItem("gender", gender);
+    localStorage.setItem("phone", num);
+
+    // 나머지 useEffect 로직은 동일하게 유지
+  }, [page, gender, num]);
+
   return page === "info" ? (
     <div className="flex flex-col w-full h-screen items-center justify-between text-[17px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[18px] scrollbar-hide overflow-y-auto">
       <header className="flex flex-col items-center my-10">
@@ -68,7 +80,12 @@ const Info = () => {
           className="w-[122px] h-[37px] mt-5"
           alt="mylistImg"
         />
-        <img src={One} alt="one" className="w-[98px] h-[33px] mt-10" />
+        <img
+          onClick={() => handleImageClick("myListInfo")}
+          src={One}
+          alt="one"
+          className="w-[98px] h-[33px] mt-10"
+        />
       </header>
 
       <main>
@@ -90,6 +107,7 @@ const Info = () => {
                     name="gender"
                     value="male"
                     onChange={(e) => setGender(e.target.value)}
+                    checked={gender === "male"}
                   />
                   <span>남성</span>
                 </label>
@@ -99,6 +117,7 @@ const Info = () => {
                     name="gender"
                     value="female"
                     onChange={(e) => setGender(e.target.value)}
+                    checked={gender === "female"}
                   />
                   <span>여성</span>
                 </label>
@@ -137,7 +156,12 @@ const Info = () => {
       </footer>
     </div>
   ) : (
-    <MyListInfo setChecked={setChecked} sex={gender} phone={num} />
+    <MyListInfo
+      setChecked={setChecked}
+      sex={gender}
+      phone={num}
+      setPage={setPage}
+    />
   );
 };
 

@@ -8,10 +8,12 @@ import { postUserData } from "../../api/festival";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const MyListInfo = ({ setChecked: setParentChecked, sex, phone }) => {
+const MyListInfo = ({ setChecked: setParentChecked, sex, phone, setPage }) => {
   const [checked, setChecked] = useState(false);
-  const [myListLink, setMyListLink] = useState("");
-  const [deposit, setDeposit] = useState(""); // Added to hold the depositor's name
+  const [myListLink, setMyListLink] = useState(
+    localStorage.getItem("myListLink") || ""
+  );
+  const [deposit, setDeposit] = useState(localStorage.getItem("deposit") || "");
 
   const navigate = useNavigate();
 
@@ -39,6 +41,14 @@ const MyListInfo = ({ setChecked: setParentChecked, sex, phone }) => {
     setChecked(false);
     setParentChecked(false);
   }, []);
+
+  useEffect(() => {
+    // 로컬 스토리지에 myListLink와 deposit 상태 저장
+    localStorage.setItem("myListLink", myListLink);
+    localStorage.setItem("deposit", deposit);
+
+    // 체크 상태 업데이트 로직 추가 가능
+  }, [myListLink, deposit]);
 
   const handleSubmit = async () => {
     if (checked) {
@@ -82,6 +92,10 @@ const MyListInfo = ({ setChecked: setParentChecked, sex, phone }) => {
     }
   }, []);
 
+  const handleImageClick = () => {
+    setPage("info"); // 직접 'info' 페이지로 전환
+  };
+
   return (
     <div className="flex flex-col w-full h-screen items-center justify-between text-[17px]">
       <header className="flex flex-col items-center mt-10">
@@ -91,7 +105,12 @@ const MyListInfo = ({ setChecked: setParentChecked, sex, phone }) => {
           className="w-[122px] h-[37px] mt-5"
           alt="mylistImg"
         />
-        <img src={Two} alt="img" className="w-[98px] h-[33px] mt-10" />
+        <img
+          src={Two}
+          onClick={() => handleImageClick()}
+          alt="img"
+          className="w-[98px] h-[33px] mt-10"
+        />
 
         <p className="mt-10 font-bold">본인의 MyList 유저네임을 입력해주세요</p>
       </header>
