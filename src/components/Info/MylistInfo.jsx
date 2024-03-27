@@ -73,6 +73,11 @@ const MyListInfo = ({ setChecked: setParentChecked, sex, phone, setPage }) => {
       try {
         await postUserData(data);
         localStorage.setItem("userSubmit", "true");
+        localStorage.removeItem("myListLink");
+        localStorage.removeItem("deposit");
+        localStorage.removeItem("gender"); // 필요에 따라 주석 처리 해제
+        localStorage.removeItem("phone"); // 필요에 따라 주석 처리 해제
+        localStorage.removeItem("page");
         navigate(`/result`);
       } catch (e) {
         // 서버로부터 받은 에러 메시지를 표시
