@@ -8,7 +8,7 @@ const Home = () => {
   const handleStart = () => {
     const userSubmit = localStorage.getItem("userSubmit");
     if (userSubmit === "true") {
-      toast.error("이미 제출하셨습니다.");
+      toast.error("이미 제출하셨습니다 !");
     } else {
       navigate("/privacy");
     }
