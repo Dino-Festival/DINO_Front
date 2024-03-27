@@ -15,10 +15,6 @@ const MyListInfo = ({ setChecked: setParentChecked, sex, phone }) => {
 
   const navigate = useNavigate();
 
-  const handleMoveMyList = () => {
-    window.open("https://mylist.im/", "_blank");
-  };
-
   // This function now checks both the link and depositor's name
   const updateCheckState = () => {
     const isUsernameValid = myListLink.length >= 3;
@@ -122,21 +118,26 @@ const MyListInfo = ({ setChecked: setParentChecked, sex, phone }) => {
           <p className="text-[#A5A5A5] text-[11px]">
             My List에서 당신의 플레이리스트를 만들어보세요!
           </p>
-          <div className="flex mt-10 items-center justify-center">
-            <button
-              onClick={handleMoveMyList}
-              className="bg-black text-white rounded-3xl w-[226px] h-[47px] text-[16px] text-center"
-            >
-              My List 시작하기
-            </button>
-          </div>
+
           <div className="mt-10">
-            <p className="font-semibold text-[17px] leading-5 mb-2">결제</p>
-            <p className="font-bold text-[19px] leading-6 mb-2">
-              신한 110-523-474827 (김동현)
+            <p className="font-semibold text-[19px] leading-5 mb-2">
+              Mylist 매칭/500원 여기로 보내주세요{" "}
             </p>
-            <p className="font-normal text-[17px] leading-5">
-              매칭 요금 : 500원
+            <p className="font-bold text-[17px] leading-6 mb-2">
+              1. 신한 110-523-474827 (김동현) OR
+            </p>
+            <p className="font-bold text-[17px] leading-6 mb-2">
+              2. 카카오페이 (김동현)
+            </p>
+            <a
+              href="https://qr.kakaopay.com/FGEvnp10vfa09789"
+              className="font-bold text-[14px] leading-6 mb-2"
+            >
+              (https://qr.kakaopay.com/FGEvnp10vfa09789 )
+            </a>
+            <p className="font-normal text-[14px] leading-5 my-2">
+              <span className="text-green-700">✔</span> 링크를 눌러 간편하고
+              안전하게 보내실 수 있습니다.
             </p>
             <p className="font-normal text-[17px] leading-5">
               *입금 후 입금자명을 기재해주세요.

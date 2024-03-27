@@ -13,6 +13,10 @@ const Home = () => {
       navigate("/privacy");
     }
   };
+
+  const handleMoveMyList = () => {
+    window.open("https://mylist.im/", "_blank");
+  };
   return (
     <main className="flex flex-col w-full h-full items-center justify-center gap-y-8">
       <div>
@@ -29,7 +33,15 @@ const Home = () => {
           onClick={handleStart}
           className="bg-black text-white rounded-3xl w-[360px] h-[58px] text-[20px] text-center"
         >
-          Start!
+          매칭 시작하기
+        </button>
+      </div>
+      <div className="flex mt-10 items-center justify-center">
+        <button
+          onClick={handleMoveMyList}
+          className="bg-white text-black border-2 border-black rounded-3xl w-[360px] h-[58px] text-[20px] text-center"
+        >
+          My List 이동하기
         </button>
       </div>
     </main>
