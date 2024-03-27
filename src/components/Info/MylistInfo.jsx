@@ -52,7 +52,7 @@ const MyListInfo = ({ setChecked: setParentChecked, sex, phone }) => {
         return; // 유저네임이 유효하지 않으면 여기서 함수 종료
       }
 
-      if (!/^[a-zA-Z0-9._]+$/.test(myListLink)){
+      if (!/^[a-zA-Z0-9._]+$/.test(myListLink)) {
         toast.error("유저네임은 한글을 포함하지 않습니다.");
         return; // 유저네임이 유효하지 않으면 여기서 함수 종료
       }
@@ -160,10 +160,11 @@ const MyListInfo = ({ setChecked: setParentChecked, sex, phone }) => {
 
       <footer className="w-full">
         <button
-          className={`w-full h-[70px]  font-bold text-lg ${checked
+          className={`w-full h-[70px]  font-bold text-lg ${
+            checked
               ? "bg-black text-white cursor-pointer"
               : "bg-[#B6B6B6] text-white cursor-default"
-            }`}
+          }`}
           disabled={!checked}
           onClick={handleSubmit}
         >
