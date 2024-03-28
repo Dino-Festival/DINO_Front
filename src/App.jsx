@@ -15,9 +15,9 @@ function App() {
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/privacy" element={<Privacy />} />
+        {/* <Route path="/privacy" element={<Privacy />} />
         <Route path="/info" element={<Info />} />
-        <Route path="/result" element={<Result />} />
+        <Route path="/result" element={<Result />} /> */}
       </Routes>
       <ToastContainer
         position="top-center"
